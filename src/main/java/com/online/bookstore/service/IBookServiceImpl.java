@@ -78,17 +78,7 @@ public class IBookServiceImpl implements IBookService {
         throw new BookStoreException("Book not found", BookStoreException.ExceptionType.BOOK_NOT_FOUND);
     }
 
-    @Override
-    public Book getBookByTitle(String bookTitle,long quantity) throws BookStoreException {
-       Book book = bookRepository.findByTitle(bookTitle);
-        long actualCount = book.getBookCount();
-       if(book!=null && actualCount-quantity>=0) {
-           updateBook(book,actualCount-quantity);
-           return book;
-       }
-       throw new BookStoreException("Book not available", BookStoreException.ExceptionType.BOOK_NOT_FOUND);
 
-    }
 
     @Override
     public Book buyABook(String bookTitle,Long count) throws BookStoreException {
@@ -118,10 +108,10 @@ public class IBookServiceImpl implements IBookService {
         final String uri = "https://jsonplaceholder.typicode.com/posts";
         RestTemplate restTemplate = new RestTemplate();
 
-         String result = restTemplate.getForObject(uri,String.class);
-         result = result.replace("\\n"," ");
+        String result = restTemplate.getForObject(uri,String.class);
+        result = result.replace("\\n"," ");
 
-         try {
+        try {
             JSONParser parser = new JSONParser();
             JSONArray array = (JSONArray)parser.parse(result);
             System.out.println(" array  "+array);
@@ -135,10 +125,9 @@ public class IBookServiceImpl implements IBookService {
                     aList.add(titleMatch.toString());
                 }
             }
-
-         } catch (Exception e) {
-            e.printStackTrace();
-         }
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
 
         return aList;
     }

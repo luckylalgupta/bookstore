@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -40,11 +39,6 @@ public class BookController {
         return "Delete Successfully";
     }
 
-    @GetMapping("/getBook/{title}/{count}")
-    public Book getBookByTitle(@PathVariable(value = "title") String title,@PathVariable(value = "count") long count) throws BookStoreException {
-        System.out.println("title "+title+"  count "+count);
-       return bookServiceImpl.getBookByTitle(title,count);
-    }
     @GetMapping("/buyABook/{title}/{count}")
     public Book buyBookByTitle(@PathVariable(value = "title") String title,@PathVariable(value = "count") long count) throws BookStoreException {
         return bookServiceImpl.buyABook(title,count);

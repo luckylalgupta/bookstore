@@ -17,8 +17,6 @@ public interface IBookService {
 
     Book searchBook(String params) throws BookStoreException;
 
-    Book getBookByTitle(String bookTitle,long count) throws BookStoreException;
-
     Book buyABook(String bookTitle,Long count) throws BookStoreException;
 
     List<String> searchMedia(String isbn) throws BookStoreException;
